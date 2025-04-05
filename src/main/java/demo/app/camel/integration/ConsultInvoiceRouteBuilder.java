@@ -1,7 +1,6 @@
 package demo.app.camel.integration;
 
-import demo.app.camel.processor.EM23AltairProcessor;
-import org.apache.camel.Exchange;
+import demo.app.camel.processor.EM23AltairRequest;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 
@@ -14,7 +13,7 @@ public class ConsultInvoiceRouteBuilder extends RouteBuilder {
         from("direct://consult-invoice")
             .routeId("consult-invoice")
             .log(LoggingLevel.INFO, "Start Consult invoice")
-            .process(new EM23AltairProcessor(user))
+            .process(new EM23AltairRequest(user))
             .toD("altair://em23AltairPS7"
                 + "?personado=false"
                 + "&transactionName=EM23"
